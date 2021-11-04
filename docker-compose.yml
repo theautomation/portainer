@@ -1,7 +1,6 @@
 ---
 version: '3.8'
 services:
-
   prd-portainer-app:
     image: docker-registry.theautomation.nl/coen/prd-portainer-app:latest
     container_name: prd-portainer-app
@@ -11,23 +10,19 @@ services:
       - 9000:9000
       - 8000:8000
     networks:
-      home-services:
+      - reverse-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - prd-portainer-app-data:/data
 
-# VOLUMES
 volumes:
-
   prd-portainer-app-data:
     name: prd-portainer-app-data
 
-# NETWORKS
 networks:
-
-  home-services:
+  reverse-proxy:
     driver: bridge
-    name: home-services
+    name: reverse-proxy
     ipam:
       config:
         - subnet: 172.20.0.0/16
