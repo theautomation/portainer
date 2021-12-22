@@ -1,1 +1,1 @@
-FROM portainer/portainer-ce:2.9.1
+FROM portainer/portainer-ce:2.11.0
